@@ -6,12 +6,12 @@ html, body
 
 body
 {
-background-image: linear-gradient(to right top, #ff0000, #ff0000, #ff0000, #ff0000, #ff0000);
+background-image: linear-gradient(to right top, #ff9100, #ff9100, #ff9100, #ff9100, #ff9100);
 }
 
 .header
 {
-	color: rgb(0, 0, 0);font-family: 'Yeon Sung';font-size: 45px;letter-spacing: 10px;margin-top: 80px;
+	color: white;font-family: 'Yeon Sung';font-size: 45px;letter-spacing: 10px;margin-top: 80px;
 }
 .header img
 {
@@ -20,7 +20,7 @@ background-image: linear-gradient(to right top, #ff0000, #ff0000, #ff0000, #ff00
 
 .login_div
 {
-	background: rgba(216, 59, 59, 0.8);float: none;border-radius: 15px;
+	background: rgba(255,255,255,0.8);float: none;border-radius: 15px;
 }
 
 .logo
@@ -31,6 +31,7 @@ background-image: linear-gradient(to right top, #ff0000, #ff0000, #ff0000, #ff00
 #login_button
 {
 	width: 80%;border-radius: 15px;
+	background-color: #ff9100;
 }
 
 .room_name

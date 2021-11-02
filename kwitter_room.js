@@ -1,24 +1,57 @@
+  // Your web app's Firebase configuration
+  const config = {
+    apiKey: "AIzaSyC7rvhJUPj-96m387rh8220wAPX1kpvqaw",
+    authDomain: "jsdbtest.firebaseapp.com",
+    databaseURL: "https://jsdbtest.firebaseio.com",
+    projectId: "jsdbtest",
+    storageBucket: "jsdbtest.appspot.com",
+    messagingSenderId: "557097620929",
+    appId: "1:557097620929:web:d549209de61a48b20b8b40"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(config);
 
-const firebaseConfig = {
-      apiKey: "AIzaSyAZPA0S6fxJb6zdAMlL5ofrL2XWPkkWCPQ",
-      authDomain: "kwitter-24106.firebaseapp.com",
-      databaseURL: "https://kwitter-24106-default-rtdb.firebaseio.com",
-      projectId: "kwitter-24106",
-      storageBucket: "kwitter-24106.appspot.com",
-      messagingSenderId: "517453331329",
-      appId: "1:517453331329:web:c6ede2d92cab465d1bc680",
-      measurementId: "G-P7QS5FFF7D"
-    };
+  user_name = localStorage.getItem("user_name");
+
+document.getElementById("user_name").innerHTML = "Welcome " + user_name + "!";
+
+function addRoom()
+{
+  room_name = document.getElementById("room_name").value;
+
+  firebase.database().ref("/").child(room_name).update({
+    purpose : "adding room name"
+  });
+
+    localStorage.setItem("room_name", room_name);
     
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    user_name=localStorage.getItem("user_name");
-    document.getElementById("user_name").innerHTML="Welcome"+user_name+"!";
+    window.location = "kwitter_page.html";
+}
 
-function getData() {firebase.database().ref("/").on('value', function(snapshot) {document.getElementById("output").innerHTML = "";snapshot.forEach(function(childSnapshot) {childKey  = childSnapshot.key;
+function getData() {  firebase.database().ref("/").on('value', function(snapshot) {
+    document.getElementById("output").innerHTML = "";
+    snapshot.forEach(function(childSnapshot) {
+       childKey  = childSnapshot.key;
        Room_names = childKey;
-      //Start code
+       console.log("Room Name - " + Room_names);
+      row = "<div class='room_name' id="+Room_names+" onclick='redirectToRoomName(this.id)' >#"+ Room_names +"</div><hr>";
+      document.getElementById("output").innerHTML += row;
+    });
+  });
 
-      //End code
-      });});}
+}
+
 getData();
+
+function redirectToRoomName(name)
+{
+  console.log(name);
+  localStorage.setItem("room_name", name);
+    window.location = "kwitter_page.html";
+}
+
+function logout() {
+localStorage.removeItem("user_name");
+localStorage.removeItem("room_name");
+    window.location = "kwitter.html";
+}
